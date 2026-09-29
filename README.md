@@ -36,6 +36,10 @@ geetshala/            ← project root (just a folder)
         wsgi.py       ← entry point for WSGI servers
         asgi.py       ← entry point for ASGI servers
 
+# Creating an app
+python manage.py startapp songs
+
+
 # 18. URLconfs and Loose Coupling¶
 A URLconf is a Python list named urlpatterns containing path() definitions.
 -- dont forget from django.urls import include
@@ -129,3 +133,24 @@ child.html
   <h2>List of Songs</h2>
 {% endblock %}
 Header, nav, and footer are written once — every page inherits them.
+
+
+# Step 3 — Freeze Your Dependencies¶
+If the virtual environment is not going into the repository, something has to say what was in it.
+
+
+pip freeze > requirements.txt
+Run this inside your activated virtual environment, otherwise you capture every package on your whole machine. The file should be short — Django, asgiref, sqlparse, and little else. If it has sixty lines, your venv was not active.
+
+
+# Unit 2
+# 4. Our First Model¶
+songs/models.py
+
+from django.db import models
+
+class Song(models.Model):
+    title = models.CharField(max_length=100)   # maps to a database column
+    lyrics = models.TextField()
+    release_date = models.DateField(null=True, blank=True)
+    is_published = models.BooleanField(default=False)
