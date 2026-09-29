@@ -1,0 +1,21 @@
+# Virtual environment — thousands of files, and it is machine-specific
+myenv/
+venv/
+.venv/
+env/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# The development database — data, not code
+db.sqlite3
+db.sqlite3-journal
+
+# Secrets — Unit 2 puts real credentials in here
+.env
+
+# Editor and OS noise
+.vscode/
+.idea/
+.DS_Store
