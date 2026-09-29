@@ -154,3 +154,49 @@ class Song(models.Model):
     lyrics = models.TextField()
     release_date = models.DateField(null=True, blank=True)
     is_published = models.BooleanField(default=False)
+
+# Database Settings for Django¶
+Update the DATABASES setting in your Django project's settings.py file to configure the connection to your MySQL database.
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '<database-name>',
+        'USER': '<djangouser>',
+        'PASSWORD': '<djangopassword>',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+# Create the Database and User¶
+Using your root user/password, you can create a new database and user with the following commands:
+
+
+CREATE DATABASE geetshala;
+CREATE USER 'djangouser'@'localhost' IDENTIFIED BY 'djangopassword';
+GRANT ALL PRIVILEGES ON geetshala.* TO 'djangouser'@'localhost';
+Expected Output¶
+MySQL server should be up and running.
+You should be able to log in to the MySQL shell using the root user.
+Database geetshala created. Verify by running show databases;.
+User djangouser created with password djangopassword and granted privileges on the geetshala database.
+🔌 Install the MySQL Adapter for Django¶
+The server is only half of it — Django needs a driver to talk to it.
+
+
+pip install mysqlclient
+Then point DATABASES in settings.py at the database and user you just created.
+
+# Creating Migrations¶
+creating migration class files that describe the changes to be made to the database schema.
+
+  python manage.py makemigrations
+
+# Applying Migrations¶
+applying the migrations to the database, creating or modifying tables as specified in the migration files.
+needs to be run whenever there are new migrations to apply.
+requires database connectivity.
+
+  python manage.py migrate
+
